@@ -1,3 +1,11 @@
-[gd_scene format=3 uid="uid://byou3gkvc5crw"]
+[gd_scene load_steps=3 format=3 uid="uid://byou3gkvc5crw"]
+
+[ext_resource type="Script" path="res://Script/kitchen.gd" id="1_b3hrv"]
+[ext_resource type="PackedScene" uid="uid://dvfscj5h6dgvd" path="res://Scene/character_1.tscn" id="2_4rskl"]
 
 [node name="kitchen" type="Node2D"]
+script = ExtResource("1_b3hrv")
+
+[node name="StaticBody2D" parent="." instance=ExtResource("2_4rskl")]
+position = Vector2(514, 312)
+scale = Vector2(4.5, 4.5)

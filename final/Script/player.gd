@@ -1,9 +1,11 @@
 extends CharacterBody2D
 @export var dialogue_resource = DialogueResource
-signal hit
 const speed = 400
 var touch = true
 
+func player():
+	pass
+	
 func _physics_process(delta):
 	player_movement(delta)
 	
@@ -27,8 +29,8 @@ func player_movement(delta):
 	else:
 		velocity = input_vector
 		$AnimatedSprite2D.stop()
-	if collision && touch:
-		var resource = preload("res://Dialogue/start.dialogue")
+	
+	#var resource = preload("res://Dialogue/start.dialogue")
 # then
-		DialogueManager.show_dialogue_balloon(resource,"start")
-		touch = false
+	#DialogueManager.show_dialogue_balloon(resource,"start")
+		#touch = false
