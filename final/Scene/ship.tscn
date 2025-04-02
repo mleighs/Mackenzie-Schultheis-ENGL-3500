@@ -1,14 +1,26 @@
-[gd_scene load_steps=4 format=3 uid="uid://b78rnbhtplkj4"]
+[gd_scene load_steps=5 format=3 uid="uid://b78rnbhtplkj4"]
 
 [ext_resource type="PackedScene" uid="uid://ccs648ittlfqb" path="res://Scene/player.tscn" id="1_5frt0"]
-[ext_resource type="Script" path="res://Script/ship.gd" id="1_11kwa"]
+[ext_resource type="Script" path="res://Script/ship.gd" id="1_vt42t"]
 [ext_resource type="PackedScene" uid="uid://dvfscj5h6dgvd" path="res://Scene/character_1.tscn" id="2_bpdc7"]
 
-[node name="Node2D" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tmjqc"]
+size = Vector2(113, 129)
+
+[node name="Ship" type="Node2D"]
 physics_interpolation_mode = 1
-script = ExtResource("1_11kwa")
+script = ExtResource("1_vt42t")
 
 [node name="player" parent="." instance=ExtResource("1_5frt0")]
 
 [node name="StaticBody2D" parent="." instance=ExtResource("2_bpdc7")]
-position = Vector2(171, 459)
+position = Vector2(171, 460)
+
+[node name="Character1_transition1" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Character1_transition1"]
+position = Vector2(170.5, 460)
+shape = SubResource("RectangleShape2D_tmjqc")
+
+[connection signal="body_entered" from="Character1_transition1" to="." method="_on_character_1_transition_1_body_entered"]
+[connection signal="body_exited" from="Character1_transition1" to="." method="_on_character_1_transition_1_body_exited"]
