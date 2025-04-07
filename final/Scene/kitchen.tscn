@@ -9,3 +9,5 @@ script = ExtResource("1_b3hrv")
 [node name="StaticBody2D" parent="." instance=ExtResource("2_4rskl")]
 position = Vector2(514, 312)
 scale = Vector2(4.5, 4.5)
+
+[connection signal="dialogue_ended" from="." to="." method="_on_dialogue_ended"]

@@ -1,11 +1,17 @@
 ~ start
 Nathan: [[Hi|Hello|Howdy]], this is some dialogue.
-| Nathan: Here are some choices.
+Nathan: Here are some choices.
 - First one
 	Nathan: You picked the first one.
+	
 - Second one
 	Nathan: You picked the second one.
 - Start again => start
-- End the conversation => END
+- End the conversation => Something
 Nathan: For more information see the online documentation.
+=> Something
+
+~ Something
+do get_tree().change_scene_to_file("res://Scene/ship.tscn")
+do Global.scene = true
 => END

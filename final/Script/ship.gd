@@ -9,9 +9,9 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-
+var stop = false
 func _on_character_1_transition_1_body_entered(body):
-	if body.has_method("player"):
+	if body.has_method("player") && Global.scene == false:
 		Global.transition_scene = true
 		get_tree().change_scene_to_file("res://Scene/kitchen.tscn")
 
