@@ -2,6 +2,8 @@ extends CharacterBody2D
 @export var dialogue_resource = DialogueResource
 const speed = 400
 var touch = true
+var gravity = [0.5,-0.5, 0.25, -0.25]
+var scene12 = false
 
 func player():
 	pass
@@ -16,6 +18,10 @@ func player_movement(delta):
 	input_vector.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
 	input_vector = input_vector.normalized()
 	var collision = move_and_collide(velocity*delta)
+	#if scene12 == true && Input.get_action_strength("ui_right") || Input.get_action_strength("ui_left") ||Input.get_action_strength("ui_down") || Input.get_action_strength("ui_up"):
+		#randomize()
+		#input_vector.x = 10*gravity.pick_random()
+		#input_vector.y = 10*gravity.pick_random()
 	if input_vector:
 		velocity = input_vector*speed
 		if input_vector.x >0:
@@ -30,7 +36,3 @@ func player_movement(delta):
 		velocity = input_vector
 		$AnimatedSprite2D.stop()
 	
-	#var resource = preload("res://Dialogue/start.dialogue")
-# then
-	#DialogueManager.show_dialogue_balloon(resource,"start")
-		#touch = false

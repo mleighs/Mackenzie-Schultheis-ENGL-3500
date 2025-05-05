@@ -43,4 +43,4 @@ position = Vector2(297.25, 245)
 shape = SubResource("RectangleShape2D_3p30i")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(299, 244)
+position = Vector2(299, 262)

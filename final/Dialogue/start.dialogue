@@ -1,17 +1,106 @@
-~ start
-Nathan: [[Hi|Hello|Howdy]], this is some dialogue.
-Nathan: Here are some choices.
-- First one
-	Nathan: You picked the first one.
-	
-- Second one
-	Nathan: You picked the second one.
-- Start again => start
-- End the conversation => Something
-Nathan: For more information see the online documentation.
+~ scene1
+The room around you isn't familiar, but you realize after a moment that you can't remember what is familiar.
+You: What-Who are you? What am I doing here?
+Captain: I am the captain of this ship. Our management has decided that we need a human ambassador to teach our species more about your world, so you were brought aboard for that task. => questions
+~ questions
+- Who am I? 
+	Captain: You are a human who I am told is called Alex. 
+	=> questions
+- Why can't I remember anything?
+	Captain: I am told that the retrieval from your planet can sometimes cause memory loss for a time. It should be temporary.
+	=> questions
+- How did I get here?
+	Captain: You were brought here by our retrieval specialist. Do not fear, I am told it is very painless.
+	=> questions
+- End the Conversation
+Captain: While you are here, you are welcome to travel freely through the ship in the areas that are not specifically blocked off. If you have questions or concerns you can ask myself or another of the crew members. Welcome to the ship
+(+1 friendship)
+do Global.friendship_captain += 1
+do Global.friendship_internal_captain  += 1
+Friendship is {{Global.friendship_captain}}
+You can build connections with the shipmates by having successful conversations. These connections can help you understand more about why you are on the ship and why you were chosen for this mission.
 => Something
+~ scene2
+The captain seems to be busy, looking at a screen and waving their arms
+- Ask about the journey
+	You: Where exactly are we going? How long is it supposed to take?
+	The captain turned a 180, assumably to face you.
+	Captain: We're going to the planet Epsilon. It is my home planet. It's difficult to tell time from here, since time passes differently in space rather than on the ground, but we should return approximately three months after we had left our home world.
+	You see strange symbols on the screen behind the captain
+	- What are you doing?
+		Captain: I am trying to ensure that we are not going to interfere with any asteroids or other objects that may be in our path.
+		- How often do you run into things like that?
+			Captain: Fairly frequently, it is something that tends to cause problems, but I am an experienced captain and am able to easily avoid them the majority of the time
+			- Would you teach me how to navigate?
+				do Character1.happy = true
+				Their spots started to grow and change, which you don't know what it means. They've become more orange, is it a danger response? Similar to how animals on Earth have bright colors to signify danger?
+				Captain: It takes a long time to learn, and I need to ensure I am focusing at the moment, but in the future, I would teach you.
+				It appears as though the captain may be annoyed at the questions
+				do Global.friendship_captain -=1
+				do Global.friendship_internal_captain +=1
+				Friendship is {{Global.friendship_captain}}
+	- Leave
+- Leave them alone
+do Character1.happy = false
+=> Something
+~ scene3
+The person is bent over, working in the dirt with the plants.
+- What are you doing?
+	Cook: I am working on my garden. I am attempting to figure out if I am able to grow a new vegetable, I am always attempting to figure out if there is a way to include further nutrients into the diet.
+	do Global.friendship_cook +=1
+	do Global.friendship_internal_cook +=2
+	Friendship is {{Global.friendship_captain}}
+- Hello! 
+	The person looks you up and down before nodding and turning back to the garden
+	do Global.friendship_cook -=1
+	do Global.friendship_internal_cook -=1
+	Friendship is {{Global.friendship_captain}}
+- Who are you?
+	Cook: I am the cook on this ship, but I'm really trying to do things
+	do Global.friendship_cook += 1
+	do Global.friendship_internal_cook += 1
+	Friendship is {{Global.friendship_captain}}
+	- What are you doing?
+		Cook: I am working on my garden. I am attempting to figure out if I am able to grow a new vegetable, I am always attempting to figure out if there is a way to include further nutrients into the diet.
+~ scene4
+There is a loud boom and the ship shakes. You see crew members run towards the front of the ship.
+- What's going on?
+	Captain: We are being attacked by a pirate ship, we need to escape by flying.
+	First Mate: Let me take the wheel, I have more experience at this.
+	Captain: No, I'm the captain, I make the rules.
+	- Interfere
+		You: It seems like First Mate has more experience with this kind of stuff, maybe they should get us out of here
+		The Captain's rings flash green, a color you haven't seen before
+		Captain: I am the captain and I advise that you mind yourself before you get thrown off this ship.
+		do Global.friendship_captain -=1
+		do Global.friendship_internal_captain -=1
+		do Global.friendship_internal_mate += 1
+		Captain's Friendship is {{Global.friendship_captain}}
+	- How can I help?
+		First Mate: Come over here and help me navigate through this.
+	- Keep out of it
+		- How can I help?
+			First Mate: Come over here and help me navigate through this.
+		- Stay quiet
+~ scene5
+The ship has escaped from the pirates, but now it seems that the ship has been damaged and pushed off course.
+Captain: We are stuck
+~ scene6
+It doesn't seem like there is anyone waiting for you at home.
+- Maybe being on this ship was for the best.
+	- I should try to help them get back to their planet if I can
+	- I should still be trying to get back to Earth, though. Maybe I can help them get their ship working and they can help me
+- They still kidnapped you, whether you had friends or not doesn't matter.
+	- I can't trust them, I need to figure out my own way back
+	- They brought me here. I want to get my revenge
+The crew needs to trust that you're telling the truth. You haven't figured out what the Captain's spots mean yet, why don't you go to the computer and try to figure it out.
+
+~ scene7
+Cook: Why haven't you been to the garden in a while?
+- Sorry, I've been working more in the medic's cabin for a while
+- I
 
 ~ Something
 do get_tree().change_scene_to_file("res://Scene/ship.tscn")
-do Global.scene = true
+do Global.has_met_character1 = true
 => END

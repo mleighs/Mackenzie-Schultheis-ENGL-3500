@@ -1,18 +1,35 @@
-[gd_scene load_steps=6 format=3 uid="uid://dvfscj5h6dgvd"]
+[gd_scene load_steps=12 format=3 uid="uid://dvfscj5h6dgvd"]
 
 [ext_resource type="Texture2D" uid="uid://8rei7rof5wqi" path="res://Art/Untitled - April 1, 2025 14.11.55 (1).png" id="1_fp3o1"]
 [ext_resource type="Texture2D" uid="uid://dd31lyt5yuiwi" path="res://Art/Untitled - April 1, 2025 14.11.55.png" id="2_q84h0"]
+[ext_resource type="Texture2D" uid="uid://bneanbqmenhht" path="res://Art/1boy.png" id="4_38uu6"]
+[ext_resource type="Texture2D" uid="uid://b28ibwdj5damd" path="res://Art/2oyb.png" id="4_jykul"]
+[ext_resource type="Texture2D" uid="uid://qxgr7fqu8emj" path="res://Art/1ybo.png" id="5_17abq"]
+[ext_resource type="Texture2D" uid="uid://c43t11j1plcpv" path="res://Art/1oyb.png" id="6_an4ih"]
+[ext_resource type="Texture2D" uid="uid://blejndr1tkrti" path="res://Art/2boy.png" id="6_dnne6"]
+[ext_resource type="Texture2D" uid="uid://c0jg0gsv7rr1v" path="res://Art/2ybo.png" id="8_a7b7t"]
 
 [sub_resource type="GDScript" id="GDScript_vuoit"]
 script/source = "extends StaticBody2D
-
+@export var dialogue_resource = DialogueResource
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$AnimatedSprite2D.play()
+	var happy = false
+	$AnimatedSprite2D.play(\"default\")
+	if happy == true:
+		$AnimatedSprite2D.play(\"happy\")
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	$AnimatedSprite2D.animation = \"default\"
+	pass
+
+
+func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+	pass # Replace with function body.
+
+
+func _on_kitchen_dialogue() -> void:
+	pass # Replace with function body.
 "
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5cf31"]
@@ -27,18 +44,40 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_38uu6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_jykul")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_17abq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_dnne6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_an4ih")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_a7b7t")
+}],
+"loop": true,
+"name": &"happy",
+"speed": 2.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xs24v"]
 size = Vector2(260, 321.5)
 
-[node name="StaticBody2D" type="StaticBody2D"]
+[node name="Character1" type="StaticBody2D"]
 script = SubResource("GDScript_vuoit")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.4, 0.4)
 sprite_frames = SubResource("SpriteFrames_5cf31")
-frame_progress = 0.971916
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1.90735e-06, 0.300003)
